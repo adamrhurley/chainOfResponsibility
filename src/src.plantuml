@@ -1,0 +1,15 @@
+@startuml
+
+title Class Diagram\n
+
+
+    class Main {
+            int amount
+            int num50s;
+            int num20s;
+            int num10s;
+
+            main()
+    }
+
+@enduml
