@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        ChainATM ATM = new ChainATM();
+        Main ATM = new Main();
         while (true) {
             int amount;
             System.out.print("Enter amount to withdraw: ");
