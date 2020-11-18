@@ -1,51 +1,33 @@
 import java.util.Scanner;
 
 public class Main {
+    private final ChainCreate chain1;
+
+    public Main() {
+        this.chain1 = new Withdraw50s();
+        ChainCreate chain2 = new Withdraw20s();
+        ChainCreate chain3 = new Withdraw10s();
+
+        chain1.setNextChain(chain2);
+        chain2.setNextChain(chain3);
+    }
+
     public static void main(String[] args) {
 
-        Scanner input = new Scanner(System.in);
-        System.out.print("Please enter an amount that is a multiple of 10:");
-        int amount = input.nextInt();
-        int num50s;
-        int num20s;
-        int num10s;
-
-        if(amount >= 50){
-            num50s = amount/50;
-            int remainder50s = amount % 50;
-            System.out.println("Dispensing " + num50s + " €50 notes");
-
-            if(remainder50s >= 20){
-                num20s = remainder50s/20;
-                int remainder20s = remainder50s % 20;
-                System.out.println("Dispensing " + num20s + " €20 notes");
-
-                if(remainder20s >= 10){
-                    num10s = remainder20s/10;
-                    System.out.println("Dispensing " + num10s + " €10 notes");
-                }
+        ChainATM ATM = new ChainATM();
+        while (true) {
+            int amount;
+            System.out.print("Enter amount to withdraw: ");
+            Scanner input = new Scanner(System.in);
+            amount = input.nextInt();
+            if (amount % 10 != 0) {
+                System.out.println("Amount must be a multiple of 10.");
+                return;
             }
-            if(remainder50s == 10){
-                System.out.println("Dispensing 1 €10 note");
-            }
-        }
-
-        if(amount <50 && amount >= 20){
-            num20s = amount/20;
-            int remainder20s = amount % 20;
-            System.out.println("Dispensing " + num20s + " €20 notes");
-
-            if(remainder20s >= 10){
-                num10s = remainder20s/10;
-                System.out.println("Dispensing " + num10s + " €10 notes");
-
-
-            }
-        }
-
-        if(amount == 10){
-            System.out.println("Dispensing 1 €10 note");
+            ATM.chain1.withdraw(new Amount(amount));
         }
 
     }
+
 }
+
