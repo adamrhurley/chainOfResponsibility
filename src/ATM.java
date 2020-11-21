@@ -1,9 +1,9 @@
 import java.util.Scanner;
 
-public class Main {
+public class ATM {
     private final ChainCreate chain1;
 
-    public Main() {
+    public ATM() {
         this.chain1 = new Withdraw50s();
         ChainCreate chain2 = new Withdraw20s();
         ChainCreate chain3 = new Withdraw10s();
@@ -14,7 +14,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        Main ATM = new Main();
+        ATM atm = new ATM();
         while (true) {
             int amount;
             System.out.print("Enter amount to withdraw: ");
@@ -24,7 +24,7 @@ public class Main {
                 System.out.println("Amount must be a multiple of 10.");
                 return;
             }
-            ATM.chain1.withdraw(new Amount(amount));
+            atm.chain1.withdraw(new Amount(amount));
         }
 
     }
