@@ -1,15 +1,62 @@
 @startuml
+skinparam classAttributeIconSize 0
+title Class Diagram
 
-title Class Diagram\n
 
-
-    class Main {
-            int amount
-            int num50s;
-            int num20s;
-            int num10s;
-
-            main()
+    class Amount {
+        - amount : int
+        + Amount()
+        + getAmount()
     }
+
+
+
+
+    class ATM {
+        + ATM()
+        + main()
+    }
+
+
+
+
+    interface ChainCreate {
+        + withdraw()
+        + setNextChain()
+    }
+
+
+
+
+    class Withdraw10s {
+        + withdraw()
+        + setNextChain()
+    }
+
+
+
+
+    class Withdraw20s {
+        + withdraw()
+        + setNextChain()
+    }
+
+
+
+
+    class Withdraw50s {
+        + dispense()
+        + setNextChain()
+    }
+
+
+
+  ATM o-- ChainCreate
+  Withdraw10s .up.|> ChainCreate
+  Withdraw20s .up.|> ChainCreate
+  Withdraw50s .up.|> ChainCreate
+
+
+
 
 @enduml
